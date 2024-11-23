@@ -20,6 +20,9 @@ importers:
 
   apps/mdlr-platform:
     dependencies:
+      '@mdlr/project':
+        specifier: workspace:*
+        version: link:../../packages/project
       '@mdlr/ui-kit':
         specifier: workspace:*
         version: link:../../packages/ui-kit

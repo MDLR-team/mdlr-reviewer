@@ -6,6 +6,10 @@ export class ProjectService {
 
   constructor() {}
 
+  public setProject(project: Project) {
+    this.project$.next(project);
+  }
+
   public dispose() {}
 }
 
