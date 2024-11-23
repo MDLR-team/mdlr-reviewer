@@ -1,22 +1,23 @@
 {
-    "name": "@mdlr/project",
-    "version": "0.1.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": ["dist"],
-    "scripts": {
-      "build": "tsc",
-      "watch": "tsc --watch"
-    },
-    "dependencies": {
-      "rxjs": "^7.0.0",
-      "@supabase/supabase-js": "^2.0.0"
-    },
-    "peerDependencies": {
-      "react": "^18.0.0"
-    },
-    "devDependencies": {
-      "typescript": "^5.0.0"
-    }
+  "name": "@mdlr/summary",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "rxjs": "^7.0.0",
+    "openai": "^4.68.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
   }
-  
+}
