@@ -48,6 +48,9 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# Ignore .magicodeconfig files
+*.magicodeconfig
+
 # Optional npm cache directory
 .npm
 

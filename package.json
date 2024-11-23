@@ -1,0 +1,11 @@
+{
+  "name": "mdlr-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "app"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
