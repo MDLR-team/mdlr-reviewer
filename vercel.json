@@ -1,0 +1,14 @@
+{
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "builds": [
+    {
+      "src": "apps/mdlr-platform/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "apps/mdlr-platform/$1" }]
+}
