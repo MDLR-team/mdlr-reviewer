@@ -1,4 +1,4 @@
-import { Project, useProject } from "@mdlr/project";
+import { Project, useProject } from "@mdlr-reviewer/project";
 import { useState } from "react";
 
 const ProjectTest = () => {

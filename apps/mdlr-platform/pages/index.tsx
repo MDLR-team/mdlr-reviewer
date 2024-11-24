@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Panel } from "@mdlr/ui-kit";
+import { Panel } from "@mdlr-reviewer/ui-kit";
 import ProjectTest from "./components/project/project";
 
 export default function Home() {

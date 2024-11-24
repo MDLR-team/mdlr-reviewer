@@ -12,9 +12,9 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "next": "15.0.3",
-    "@mdlr/ui-kit": "workspace:*",
-    "@mdlr/project": "workspace:*",
-    "@mdlr/summary": "workspace:*"
+    "@mdlr-reviewer/ui-kit": "workspace:*",
+    "@mdlr-reviewer/project": "workspace:*",
+    "@mdlr-reviewer/summary": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",

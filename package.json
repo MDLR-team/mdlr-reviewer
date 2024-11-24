@@ -7,16 +7,16 @@
     "packages/*"
   ],
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0"
+    "eslint": "^9.15.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "pnpm": "9.x"
   },
   "scripts": {
     "build": "pnpm -r --workspace-concurrency=1 run build",
-    "build:packages": "pnpm -r --filter @mdlr/project --filter @mdlr/ui-kit --filter @mdlr/summary run build",
+    "build:packages": "pnpm -r --filter @mdlr-reviewer/project --filter @mdlr-reviewer/ui-kit --filter @mdlr-reviewer/summary run build",
     "dev": "pnpm -r --workspace-concurrency=1 run dev",
     "dev:platform": "pnpm -r --filter mdlr-platform run dev",
     "lint": "pnpm -r --workspace-concurrency=1 run lint"
