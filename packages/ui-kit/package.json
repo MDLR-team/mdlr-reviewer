@@ -11,16 +11,19 @@
     "watch": "tsc --watch"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "@mui/material": "^5.14.0",
     "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0"
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@mui/material": "^5.14.0",
     "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0"
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "styled-components": "^6.1.13"
   }
 }

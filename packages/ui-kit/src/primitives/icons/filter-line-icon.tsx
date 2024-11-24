@@ -1,0 +1,20 @@
+const FilterLineIcon = () => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19 7L5 7.00002M16.5 12H7.49999M13.5 17H10.5"
+        stroke="black"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+export default FilterLineIcon;
