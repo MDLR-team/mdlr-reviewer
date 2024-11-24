@@ -1,1 +1,2 @@
-export * from "./services/project-service/project-service";
+export * from "./services/project-service";
+export * from "./hooks/use-project";

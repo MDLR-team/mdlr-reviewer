@@ -22,6 +22,9 @@ importers:
     dependencies:
       '@mdlr/project':
         specifier: workspace:*
+        version: link:../../packages/project
+      '@mdlr/summary':
+        specifier: workspace:*
         version: link:../../packages/summary
       '@mdlr/ui-kit':
         specifier: workspace:*
