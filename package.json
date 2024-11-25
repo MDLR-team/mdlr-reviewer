@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "pnpm -r --workspace-concurrency=1 run build",
-    "build:packages": "pnpm -r --filter @mdlr-reviewer/project --filter @mdlr-reviewer/ui-kit --filter @mdlr-reviewer/summary run build",
+    "build:p": "pnpm -r --filter @mdlr-reviewer/project --filter @mdlr-reviewer/ui-kit --filter @mdlr-reviewer/summary run build",
     "dev": "pnpm -r --workspace-concurrency=1 run dev",
     "dev:platform": "pnpm -r --filter mdlr-platform run dev",
     "lint": "pnpm -r --workspace-concurrency=1 run lint"

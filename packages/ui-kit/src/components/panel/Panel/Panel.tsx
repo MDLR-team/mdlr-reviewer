@@ -5,8 +5,11 @@ import { RightSummary } from "../RightSummary/RightSummary";
 import { PanelContainer } from "./panel.styles";
 import GlobalStyles from "../../../styles/global-styles/global-styles";
 import NavBar from "../NavBar/NavBar";
+import { IProjectService } from "../../../types/project/project-service.types";
 
-export const Panel: React.FC = () => {
+export const Panel: React.FC<{
+  project: IProjectService;
+}> = ({ project }) => {
   const [selectedSummaryId, setSelectedSummaryId] = useState<string | null>(
     null
   );
