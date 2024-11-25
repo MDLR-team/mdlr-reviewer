@@ -1,6 +1,7 @@
 import { Project, useProject } from "@mdlr-reviewer/project";
 import { useState } from "react";
 import { Panel } from "@mdlr-reviewer/ui-kit";
+import { supabase as supabaseClient } from "../supabase/supabase-client";
 
 const ProjectTest = () => {
   const [project] = useState(
@@ -11,8 +12,9 @@ const ProjectTest = () => {
           description: "This is a test project",
         },
         supabaseClient,
-        chatGpt: {
-          apiKey: process.env.NEXT_PUBLIC_CHAT_GPT_API_KEY,
+        chatGptConfig: {
+          apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY!,
+          apiSecret: process.env.NEXT_PUBLIC_OPENAI_API_SECRET!,
         },
       })
   );

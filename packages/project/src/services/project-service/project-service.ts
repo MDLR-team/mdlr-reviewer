@@ -20,6 +20,7 @@ export class ProjectService implements IProjectService {
       supabaseClient?: any;
       chatGptConfig?: {
         apiKey: string;
+        apiSecret: string;
       };
     }
   ) {
