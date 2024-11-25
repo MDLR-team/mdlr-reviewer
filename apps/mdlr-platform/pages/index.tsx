@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Panel } from "@mdlr-reviewer/ui-kit";
 import ProjectTest from "./components/project/project";
 
 export default function Home() {
@@ -13,8 +12,6 @@ export default function Home() {
       </Head>
 
       <ProjectTest />
-
-      <Panel />
     </>
   );
 }

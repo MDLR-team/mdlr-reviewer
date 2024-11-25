@@ -11,13 +11,15 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "rxjs": "^7.0.0",
-    "openai": "^4.68.1"
+    "openai": "^4.68.1",
+    "rxjs": "^7.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"
   },
   "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "typescript": "^5.0.0"
   }
 }
