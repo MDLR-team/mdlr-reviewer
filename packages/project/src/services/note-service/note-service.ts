@@ -19,8 +19,14 @@ export class NoteService {
     this.notes$.next([...currentNotes, note]);
   }
 
+  // Add multiple notes at a time and trigger updates
+  addNotes(notes: NoteEntry[]) {
+    const currentNotes = this.notes$.getValue();
+    this.notes$.next([...currentNotes, ...notes]);
+  }
+
   // Expose the observable for external services like the SummaryService
-  onNotesUpdated() {
+  public get onNotesUpdated() {
     return this.notes$.asObservable();
   }
 

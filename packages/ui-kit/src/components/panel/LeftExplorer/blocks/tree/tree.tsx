@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TreeItem from "../tree-item/tree-item";
+import { LeftExplorerProps } from "../../LeftExplorer";
 
-const Tree = () => {
+const Tree: React.FC<LeftExplorerProps> = ({
+  summaries,
+  activeSummary,
+  onSelect,
+}) => {
   return (
     <Box
       sx={{
@@ -11,14 +16,17 @@ const Tree = () => {
         flexDirection: "column",
       }}
     >
-      {[
-        { id: "1", title: "Summary 1" },
-        { id: "2", title: "Summary 2" },
-        { id: "3", title: "Summary 3" },
-      ].map((item) => {
-        const isActive = false;
+      {summaries.map((item) => {
+        const isActive = activeSummary && activeSummary.id === item.id;
 
-        return <TreeItem key={item.id} item={item} isActive={isActive} />;
+        return (
+          <TreeItem
+            key={item.id}
+            item={item}
+            isActive={isActive}
+            onSelect={onSelect}
+          />
+        );
       })}
     </Box>
   );

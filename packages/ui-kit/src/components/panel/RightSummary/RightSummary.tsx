@@ -2,11 +2,13 @@ import React from "react";
 import { Typography, Box } from "@mui/material";
 
 interface RightSummaryProps {
-  summaryId: string | null;
+  activeSummary: any | null;
 }
 
-export const RightSummary: React.FC<RightSummaryProps> = ({ summaryId }) => {
-  if (!summaryId) {
+export const RightSummary: React.FC<RightSummaryProps> = ({
+  activeSummary,
+}) => {
+  if (!activeSummary) {
     return (
       <Box>
         <Typography variant="h6">No summary selected</Typography>
@@ -16,10 +18,8 @@ export const RightSummary: React.FC<RightSummaryProps> = ({ summaryId }) => {
 
   return (
     <Box>
-      <Typography variant="h6">Summary Details</Typography>
-      <Typography variant="body1">
-        Details for summary ID: {summaryId}
-      </Typography>
+      <h1>{activeSummary.title}</h1>
+      <Box>{activeSummary.content}</Box>
     </Box>
   );
 };
