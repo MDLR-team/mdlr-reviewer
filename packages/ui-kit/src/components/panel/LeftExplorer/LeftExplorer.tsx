@@ -1,20 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import Tree from "./blocks/tree/tree";
 import NoteAddIcon from "../../../primitives/icons/note-add-icon";
 import FilterLineIcon from "../../../primitives/icons/filter-line-icon";
 
-interface LeftExplorerProps {
+export interface LeftExplorerProps {
+  summaries: any[];
+  activeSummary: any | null;
   onSelect: (id: string) => void;
 }
 
-const mockSummaries = [
-  { id: "1", title: "Summary 1" },
-  { id: "2", title: "Summary 2" },
-  { id: "3", title: "Summary 3" },
-];
-
-export const LeftExplorer: React.FC<LeftExplorerProps> = ({ onSelect }) => {
+export const LeftExplorer: React.FC<LeftExplorerProps> = ({ ...props }) => {
   return (
     <Box
       sx={{
@@ -54,7 +50,7 @@ export const LeftExplorer: React.FC<LeftExplorerProps> = ({ onSelect }) => {
           </IconButton>
         </Box>
 
-        <Tree />
+        <Tree {...props} />
       </Box>
     </Box>
   );

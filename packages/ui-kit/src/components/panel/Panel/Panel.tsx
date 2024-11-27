@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
 import { LeftExplorer } from "../LeftExplorer/LeftExplorer";
 import { RightSummary } from "../RightSummary/RightSummary";
@@ -6,13 +6,35 @@ import { PanelContainer } from "./panel.styles";
 import GlobalStyles from "../../../styles/global-styles/global-styles";
 import NavBar from "../NavBar/NavBar";
 import { IProjectService } from "../../../types/project/project-service.types";
+import moment from "moment";
 
-export const Panel: React.FC<{
-  project: IProjectService;
+export const PanelContent: React.FC<{
+  project: any;
 }> = ({ project }) => {
-  const [selectedSummaryId, setSelectedSummaryId] = useState<string | null>(
-    null
-  );
+  const [summaries, setSummaries] = useState<any[]>([]);
+  const [activeSummary, setActiveSummary] = useState<any>(null);
+
+  useEffect(() => {
+    const summaryService = project.getSummaryService();
+    const a = summaryService.onSummariesUpdated.subscribe((summaries: any) => {
+      setSummaries(summaries);
+    });
+    const b = summaryService.activeSummary$.subscribe((summary: any) =>
+      setActiveSummary(summary)
+    );
+
+    return () => {
+      a.unsubscribe();
+      b.unsubscribe();
+    };
+  }, [project]);
+
+  console.log("activeSummary", activeSummary);
+
+  const onSelectSummary = (id: string) => {
+    const summaryService = project.getSummaryService();
+    summaryService.setActiveSummary(id);
+  };
 
   return (
     <>
@@ -56,7 +78,11 @@ export const Panel: React.FC<{
               width: "100%",
             }}
           >
-            <LeftExplorer onSelect={(id) => setSelectedSummaryId(id)} />
+            <LeftExplorer
+              summaries={summaries}
+              activeSummary={activeSummary}
+              onSelect={onSelectSummary}
+            />
 
             <Box
               sx={{
@@ -84,13 +110,13 @@ export const Panel: React.FC<{
                     justifyContent: "space-between",
                   }}
                 >
-                  <Box>
-                    {`It was updated ${
-                      /* moment(
-                      activeSummary.updated_at
-                    ).fromNow()} */ "1 day ago"
-                    }`}
-                  </Box>
+                  {activeSummary && (
+                    <Box>
+                      {`It was updated ${moment(
+                        activeSummary.updated_at
+                      ).fromNow()}`}
+                    </Box>
+                  )}
 
                   <Box>
                     <Button
@@ -106,7 +132,7 @@ export const Panel: React.FC<{
                 </Box>
               )}
               {/* Right Summary */}
-              <RightSummary summaryId={selectedSummaryId} />
+              <RightSummary activeSummary={activeSummary} />
             </Box>
           </Box>
         </Box>
@@ -117,4 +143,14 @@ export const Panel: React.FC<{
       </PanelContainer> */}
     </>
   );
+};
+
+export const Panel: React.FC<{
+  project: any;
+}> = ({ project }) => {
+  if (!project) {
+    return null;
+  }
+
+  return <PanelContent project={project} />;
 };

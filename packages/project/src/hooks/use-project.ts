@@ -10,15 +10,15 @@ export function useProject(projectService: ProjectService) {
   useEffect(() => {
     // Subscribe to note updates
     const notesSubscription = projectService
-      .onNotesUpdated()
-      .subscribe((updatedNotes) => {
+      .getNoteService()
+      .onNotesUpdated.subscribe((updatedNotes) => {
         setNotes(updatedNotes);
       });
 
     // Subscribe to summary updates
     const summariesSubscription = projectService
-      .onSummariesUpdated()
-      .subscribe((updatedSummaries) => {
+      .getSummaryService()
+      .onSummariesUpdated.subscribe((updatedSummaries) => {
         setSummaries(updatedSummaries);
       });
 

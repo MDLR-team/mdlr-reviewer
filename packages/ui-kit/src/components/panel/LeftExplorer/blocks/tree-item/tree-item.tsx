@@ -6,7 +6,8 @@ import styled from "styled-components";
 const TreeItem: React.FC<{
   item: any;
   isActive: boolean;
-}> = ({ item, isActive }) => {
+  onSelect: (id: string) => void;
+}> = ({ item, isActive, onSelect }) => {
   return (
     <ButtonWrapper
       sx={{
@@ -17,7 +18,7 @@ const TreeItem: React.FC<{
         gap: "10px",
         alignItems: "center",
       }}
-      //onClick={handleClick}
+      onClick={() => onSelect(item.id)}
     >
       <Box
         sx={{

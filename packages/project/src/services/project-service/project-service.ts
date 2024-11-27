@@ -1,8 +1,13 @@
 import { BehaviorSubject } from "rxjs";
 import { NoteService } from "../note-service/note-service";
 import { SummaryService } from "../summary-service/summary-service";
-import { IProjectService } from "../../types/project/project-service.types";
+import {
+  ChatGptConfig,
+  IProjectService,
+  SupabaseConfig,
+} from "../../types/project/project-service.types";
 import DBService from "../db-service/db-service";
+import { NoteEntry } from "../note-service/note-service.types";
 
 export class ProjectService implements IProjectService {
   id: string;
@@ -13,21 +18,21 @@ export class ProjectService implements IProjectService {
   private summaryService: SummaryService;
   private dbService: DBService;
 
+  private supabaseClient: any;
+
   constructor(
     id: string,
     config: {
       metadata?: Record<string, any>;
-      supabaseClient?: any;
-      chatGptConfig?: {
-        apiKey: string;
-        apiSecret: string;
-      };
+      supabase?: SupabaseConfig;
+      chatGpt?: ChatGptConfig;
     }
   ) {
+    this.id = id;
     this.metadata = config.metadata || {};
 
-    this.id = id;
-    this.metadata = {};
+    // Initialize Supabase client
+    this.supabaseClient = this._initializeSupabase(config.supabase);
 
     this.noteService = new NoteService(this);
     this.summaryService = new SummaryService(this);
@@ -39,17 +44,13 @@ export class ProjectService implements IProjectService {
     return this.noteService.getNotes();
   }
 
-  public onNotesUpdated() {
-    return this.noteService.onNotesUpdated();
+  public addNotes(notes: NoteEntry[]) {
+    return this.noteService.addNotes(notes);
   }
 
   // Expose methods for summaries
   public getSummaries() {
     return this.summaryService.getSummaries();
-  }
-
-  public onSummariesUpdated() {
-    return this.summaryService.onSummariesUpdated();
   }
 
   public getNoteService() {
@@ -58,6 +59,14 @@ export class ProjectService implements IProjectService {
 
   public getSummaryService() {
     return this.summaryService;
+  }
+
+  // Internal: Initialize Supabase client
+  private _initializeSupabase(config?: SupabaseConfig) {
+    if (config?.client) {
+      // Use provided Supabase client
+      return config.client;
+    }
   }
 
   public dispose() {
