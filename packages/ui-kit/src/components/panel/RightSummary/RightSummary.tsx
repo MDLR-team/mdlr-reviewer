@@ -23,7 +23,8 @@ export const RightSummary: React.FC<RightSummaryProps> = ({
     <Box
       sx={{
         padding: "var(--mr-gap-l)",
-        overflowY: "auto",
+        overflowY: "scroll",
+        position: "relative",
       }}
     >
       <h1 style={{ paddingBottom: "var(--mr-gap-l)" }}>
