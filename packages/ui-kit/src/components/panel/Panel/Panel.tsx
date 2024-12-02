@@ -7,6 +7,7 @@ import GlobalStyles from "../../../styles/global-styles/global-styles";
 import NavBar from "../NavBar/NavBar";
 import { IProjectService } from "../../../types/project/project-service.types";
 import moment from "moment";
+import Actions from "../Actions/Actions";
 
 export const PanelContent: React.FC<{
   project: any;
@@ -34,6 +35,8 @@ export const PanelContent: React.FC<{
     const summaryService = project.getSummaryService();
     summaryService.setActiveSummary(id);
   };
+
+  console.log("activeSummary", activeSummary);
 
   return (
     <>
@@ -91,47 +94,74 @@ export const PanelContent: React.FC<{
                 maxHeight: "100%",
                 overflow: "hidden",
                 position: "relative",
-                display: "flex",
-                flexDirection: "column",
               }}
             >
-              {" "}
-              {activeSummary && (
-                <Box
-                  sx={{
-                    width: "100%",
-                    backgroundColor: "var(--mr-gray-1)",
-                    borderBottom: "1px solid var(--mr-gray-3)",
-                    padding: "6px 16px",
-                    display: "flex",
-                    gap: "8px",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Box>
-                    {`It was updated ${moment(
-                      activeSummary.updated_at
-                    ).fromNow()}`}
-                  </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  pointerEvents: "none",
+                  padding: "var(--mr-gap-m)",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  width: "100%",
+                  height: "100%",
+                  zIndex: 50,
+                }}
+              >
+                <Actions />
+              </Box>
 
-                  <Box>
-                    <Button
-                      size="small"
-                      onClick={() =>
-                        project.summaryService.refreshSummary(activeSummary.id)
-                      }
-                      sx={{
-                        border: "1px solid var(--mr-gray-3)",
-                      }}
-                    >
-                      Refresh
-                    </Button>
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {" "}
+                {activeSummary && (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      backgroundColor: "var(--mr-gray-1)",
+                      borderBottom: "1px solid var(--mr-gray-3)",
+                      padding: "6px 16px",
+                      display: "flex",
+                      gap: "8px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Box>
+                      {`It was updated ${moment(
+                        activeSummary.updated_at
+                      ).fromNow()}`}
+                    </Box>
+
+                    <Box>
+                      <Button
+                        size="small"
+                        onClick={() =>
+                          project.summaryService.refreshSummary(
+                            activeSummary.id
+                          )
+                        }
+                        sx={{
+                          border: "1px solid var(--mr-gray-3)",
+                        }}
+                      >
+                        Refresh
+                      </Button>
+                    </Box>
                   </Box>
-                </Box>
-              )}
-              {/* Right Summary */}
-              <RightSummary activeSummary={activeSummary} />
+                )}
+                {/* Right Summary */}
+                <RightSummary activeSummary={activeSummary} />
+              </Box>
             </Box>
           </Box>
         </Box>
