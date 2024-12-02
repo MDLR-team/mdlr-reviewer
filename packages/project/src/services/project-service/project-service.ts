@@ -19,6 +19,7 @@ export class ProjectService implements IProjectService {
   private dbService: DBService;
 
   private supabaseClient: any;
+  private chatGptConfig?: ChatGptConfig;
 
   constructor(
     id: string,
@@ -33,6 +34,7 @@ export class ProjectService implements IProjectService {
 
     // Initialize Supabase client
     this.supabaseClient = this._initializeSupabase(config.supabase);
+    this.chatGptConfig = config.chatGpt;
 
     this.noteService = new NoteService(this);
     this.summaryService = new SummaryService(this);
