@@ -2,9 +2,11 @@ import { BehaviorSubject } from "rxjs";
 import { NoteService } from "../note-service/note-service";
 import { ProjectService } from "../project-service/project-service";
 import { SummaryEntry } from "./summary-service.types";
+import GenResultService from "../gen-result-service/gen-result-service";
 
 class SummaryService {
   private projectService: ProjectService;
+  private genResultService: GenResultService;
 
   private _summaries$: BehaviorSubject<SummaryEntry[]> = new BehaviorSubject<
     SummaryEntry[]
@@ -16,6 +18,10 @@ class SummaryService {
   private noteService: NoteService;
 
   constructor(projectService: ProjectService) {
+    this.genResultService = new GenResultService(
+      projectService["chatGptConfig"]
+    );
+
     this.projectService = projectService;
     this.supabaseClient = projectService["supabaseClient"]; // Access Supabase client from ProjectService
     this.noteService = projectService.getNoteService();
@@ -113,6 +119,19 @@ class SummaryService {
   // Get the current summaries
   getSummaries() {
     return this._summaries$.getValue();
+  }
+
+  public async generateSummaryFromNotes() {
+    const notes = this.projectService.getNotes();
+
+    const summaryContent = await this.genResultService.generateSummary(notes);
+    console.log("Generated summary:", summaryContent);
+  }
+
+  public async refreshSummary(id: string) {
+    const summary = this._summaries$.getValue().find((s) => s.id === id);
+
+    await this.generateSummaryFromNotes();
   }
 
   public get activeSummary$() {

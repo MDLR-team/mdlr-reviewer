@@ -14,6 +14,7 @@ const GlobalStyles: ReturnType<typeof createGlobalStyle> = createGlobalStyle`
     --mr-border: 1px solid var(--mr-border-color);
     --mr-icon-scale: 1.2;
     --mr-gap-m: 10px;
+    --mr-gap-l: 24px;
     --mr-shadow: 0px 12px 33px 0px rgba(0, 0, 0, .06), 0px 3.618px 9.949px 0px rgba(0, 0, 0, .04);
   }
 `;

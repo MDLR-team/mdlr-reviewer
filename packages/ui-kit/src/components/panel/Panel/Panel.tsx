@@ -14,8 +14,9 @@ export const PanelContent: React.FC<{
   const [summaries, setSummaries] = useState<any[]>([]);
   const [activeSummary, setActiveSummary] = useState<any>(null);
 
+  const summaryService = project.getSummaryService();
+
   useEffect(() => {
-    const summaryService = project.getSummaryService();
     const a = summaryService.onSummariesUpdated.subscribe((summaries: any) => {
       setSummaries(summaries);
     });
@@ -28,8 +29,6 @@ export const PanelContent: React.FC<{
       b.unsubscribe();
     };
   }, [project]);
-
-  console.log("activeSummary", activeSummary);
 
   const onSelectSummary = (id: string) => {
     const summaryService = project.getSummaryService();
@@ -97,7 +96,7 @@ export const PanelContent: React.FC<{
               }}
             >
               {" "}
-              {true && (
+              {activeSummary && (
                 <Box
                   sx={{
                     width: "100%",
@@ -110,18 +109,18 @@ export const PanelContent: React.FC<{
                     justifyContent: "space-between",
                   }}
                 >
-                  {activeSummary && (
-                    <Box>
-                      {`It was updated ${moment(
-                        activeSummary.updated_at
-                      ).fromNow()}`}
-                    </Box>
-                  )}
+                  <Box>
+                    {`It was updated ${moment(
+                      activeSummary.updated_at
+                    ).fromNow()}`}
+                  </Box>
 
                   <Box>
                     <Button
                       size="small"
-                      //onClick={() => summaryService.generateSummary()}
+                      onClick={() =>
+                        project.summaryService.refreshSummary(activeSummary.id)
+                      }
                       sx={{
                         border: "1px solid var(--mr-gray-3)",
                       }}
