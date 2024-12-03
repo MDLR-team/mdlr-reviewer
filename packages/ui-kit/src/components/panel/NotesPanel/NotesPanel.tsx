@@ -7,6 +7,11 @@ const NotesContainer = styled(Box)`
   height: 100%;
   overflow-y: auto;
 
+  background-color: white;
+  border: var(--mr-border);
+  borderradius: var(--mr-border-radius);
+  boxshadow: var(--mr-shadow);
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -53,9 +58,9 @@ export const NotesPanel: React.FC<{
         >
           {notes.length > 0 ? (
             notes.map((note) => (
-              <Box key={note.id} mb={2}>
-                <Typography variant="body1">{note.content}</Typography>
-              </Box>
+              <NoteContainer key={note.id} mb={2}>
+                {note.content}
+              </NoteContainer>
             ))
           ) : (
             <Typography variant="body2" color="textSecondary">
@@ -67,3 +72,18 @@ export const NotesPanel: React.FC<{
     </NotesContainer>
   );
 };
+
+const NoteContainer = styled(Box)`
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f0ee;
+  }
+
+  &,
+  & * {
+    font-size: 12px;
+  }
+`;
