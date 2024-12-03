@@ -1,8 +1,10 @@
 import { Box, Button } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import AiIcon from "../../../primitives/icons/ai-icon";
+import AiIcon from "../../../../primitives/icons/ai-icon";
+import { useActionArea } from "../actions-area";
 
 const Actions = () => {
+  const { handleAction, actionType } = useActionArea();
   const [showPanel, setShowPanel] = useState(false);
   const panelRef = useRef<any>(null);
 
@@ -11,7 +13,7 @@ const Actions = () => {
   };
 
   const handleCommandClick = (command: any) => {
-    //handleAction(command);
+    handleAction(command);
     setShowPanel(false); // Hide panel when a command is clicked
   };
 
@@ -32,6 +34,8 @@ const Actions = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showPanel]);
+
+  if (actionType) return null;
 
   return (
     <Box

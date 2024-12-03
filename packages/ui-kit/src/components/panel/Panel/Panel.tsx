@@ -7,7 +7,8 @@ import GlobalStyles from "../../../styles/global-styles/global-styles";
 import NavBar from "../NavBar/NavBar";
 import { IProjectService } from "../../../types/project/project-service.types";
 import moment from "moment";
-import Actions from "../Actions/Actions";
+import Actions from "../Actions-Area/Actions/Actions";
+import ActionsArea from "../Actions-Area/actions-area";
 
 export const PanelContent: React.FC<{
   project: any;
@@ -110,7 +111,7 @@ export const PanelContent: React.FC<{
                   zIndex: 50,
                 }}
               >
-                <Actions />
+                <ActionsArea />
               </Box>
 
               <Box
