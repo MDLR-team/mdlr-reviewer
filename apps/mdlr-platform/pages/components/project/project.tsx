@@ -1,6 +1,6 @@
 import { Project, useProject } from "@mdlr-reviewer/project";
 import { useEffect, useState } from "react";
-import { Panel } from "@mdlr-reviewer/ui-kit";
+import { NotesPanel, Panel } from "@mdlr-reviewer/ui-kit";
 import { supabase as supabaseClient } from "../supabase/supabase-client";
 import { Box } from "@mui/material";
 import styled from "styled-components";
@@ -21,14 +21,9 @@ const ProjectTest = () => {
           client: supabaseClient,
         },
         chatGpt: {
-          apiKey: process.env.NEXT_PUBLIC_OPENAI_API_SECRET,
+          apiKey: "",
         },
       })
-  );
-
-  console.log(
-    "process.env.NEXT_PUBLIC_OPENAI_API_SECRET",
-    process.env.NEXT_PUBLIC_OPENAI_API_SECRET
   );
 
   const dummyNotes = [
@@ -87,7 +82,7 @@ const ProjectTest = () => {
             padding: "20px",
           }}
         >
-          Content
+          <NotesPanel project={project} />
         </Box>
       </Split>
     </Wrapper>
