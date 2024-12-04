@@ -106,6 +106,7 @@ export const PanelContent: React.FC<{
                   padding: "var(--mr-gap-m)",
                   display: "flex",
                   alignItems: "flex-end",
+                  justifyContent: "center",
                   width: "100%",
                   height: "100%",
                   zIndex: 50,

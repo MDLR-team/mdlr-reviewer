@@ -18,9 +18,7 @@ class SummaryService {
   private noteService: NoteService;
 
   constructor(projectService: ProjectService) {
-    this.genResultService = new GenResultService(
-      projectService["chatGptConfig"]
-    );
+    this.genResultService = new GenResultService();
 
     this.projectService = projectService;
     this.supabaseClient = projectService["supabaseClient"]; // Access Supabase client from ProjectService
