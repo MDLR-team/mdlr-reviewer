@@ -1,7 +1,7 @@
 import { Project, useProject } from "@mdlr-reviewer/project";
 import { useEffect, useState } from "react";
 import { NotesPanel, Panel } from "@mdlr-reviewer/ui-kit";
-import { supabase as supabaseClient } from "../supabase/supabase-client";
+import { supabase } from "../supabase/supabase-client";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Split from "react-split";
@@ -13,16 +13,10 @@ const ProjectTest = () => {
   const [project] = useState(
     () =>
       new Project(existingProject, {
-        metadata: {
-          title: "Test Project",
-          description: "This is a test project",
-        },
         supabase: {
-          client: supabaseClient,
+          client: supabase,
         },
-        chatGpt: {
-          apiKey: "",
-        },
+        summaryEndpoint: "/api/generate-summary",
       })
   );
 
