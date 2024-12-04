@@ -22,7 +22,7 @@ export class ProjectService implements IProjectService {
 
   constructor(
     id: string,
-    config: {
+    private config: {
       metadata?: Record<string, any>;
       supabase?: SupabaseConfig;
       summaryEndpoint?: string;
@@ -59,6 +59,10 @@ export class ProjectService implements IProjectService {
 
   public getSummaryService() {
     return this.summaryService;
+  }
+
+  public getConfig() {
+    return this.config;
   }
 
   // Internal: Initialize Supabase client

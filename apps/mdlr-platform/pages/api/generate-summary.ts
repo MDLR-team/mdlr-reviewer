@@ -13,11 +13,14 @@ export default async function handler(
       return res.status(400).json({ error: "Request body is missing" });
     }
 
+    const apiKey = process.env.CHATGPT_API_KEY;
+    console.log("aaa", apiKey);
+
     // Initialize the SummaryGenerator service
     const summaryGenerator = new SummaryGenerator({
       supabase: {
         client: supabase,
-        chatGpt: { apiKey: process.env.CHATGPT_API_KEY },
+        chatGpt: { apiKey },
       },
     });
 

@@ -119,12 +119,41 @@ class SummaryService {
     return this._summaries$.getValue();
   }
 
-  public async generateSummaryFromNotes() {
-    const notes = this.projectService.getNotes();
+  public generateSummaryFromNotes = async () => {
+    console.log("Generating summary from notes...");
 
-    const summaryContent = await this.genResultService.generateSummary(notes);
+    const notes = this.projectService.getNotes();
+    const notesContent = notes.map((note) => note.content).join("\n");
+
+    const summaryEndpoint =
+      this.projectService.getConfig().summaryEndpoint || "";
+
+    const summary = await fetch(summaryEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        projectId: this.projectService.id,
+        userPrompt: "Summarize the following notes for a project.",
+        notes: notesContent,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        return data.summary;
+      })
+      .catch((error) => {
+        console.error("Error generating summary:", error);
+        return null;
+      });
+
+    const summaryContent = summary || "Failed to generate summary.";
     console.log("Generated summary:", summaryContent);
-  }
+  };
 
   public async refreshSummary(id: string) {
     const summary = this._summaries$.getValue().find((s) => s.id === id);
