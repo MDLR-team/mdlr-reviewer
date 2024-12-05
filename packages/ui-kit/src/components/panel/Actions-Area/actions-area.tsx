@@ -39,10 +39,10 @@ export const useActionArea = () => {
 };
 
 // Update the ActionsArea component to use the provider
-const ActionsArea: React.FC<{}> = () => {
+const ActionsArea: React.FC<{ project: any }> = ({ project }) => {
   return (
     <ActionAreaProvider>
-      <SummaryAction />
+      <SummaryAction project={project} />
       <Actions />
     </ActionAreaProvider>
   );

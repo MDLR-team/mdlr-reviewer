@@ -119,8 +119,8 @@ class SummaryService {
     return this._summaries$.getValue();
   }
 
-  public generateSummaryFromNotes = async () => {
-    console.log("Generating summary from notes...");
+  public generateSummaryFromNotes = async (summary: SummaryEntry) => {
+    const prompt = summary.prompt;
 
     const notes = this.projectService.getNotes();
     const notesContent = notes.map((note) => note.content).join("\n");
@@ -128,37 +128,66 @@ class SummaryService {
     const summaryEndpoint =
       this.projectService.getConfig().summaryEndpoint || "";
 
-    const summary = await fetch(summaryEndpoint, {
+    const title =
+      (await this.getResultFromEndpoint(summaryEndpoint, {
+        type: "title",
+        projectId: this.projectService.id,
+        userPrompt: prompt,
+      })) || "";
+
+    const content =
+      (await this.getResultFromEndpoint(summaryEndpoint, {
+        type: "content",
+        projectId: this.projectService.id,
+        userPrompt: prompt,
+        notes: notesContent,
+      })) || "";
+
+    console.log("title", title);
+
+    return {
+      title,
+      content,
+    };
+  };
+
+  private async sendRequest(endpoint: string, body: any) {
+    return fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        projectId: this.projectService.id,
-        userPrompt: "Summarize the following notes for a project.",
-        notes: notesContent,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          throw new Error(data.error);
-        }
-        return data.summary;
-      })
-      .catch((error) => {
-        console.error("Error generating summary:", error);
-        return null;
-      });
+      body: JSON.stringify(body),
+    });
+  }
 
-    const summaryContent = summary || "Failed to generate summary.";
-    console.log("Generated summary:", summaryContent);
-  };
+  private async getResultFromEndpoint(endpoint: string, body: any) {
+    try {
+      const response = await this.sendRequest(endpoint, body);
+      const result = await response.json();
+      if (response.ok) {
+        return result.summary;
+      } else {
+        throw new Error(result.error || "Unknown error occurred");
+      }
+    } catch (error) {
+      console.error("Error fetching result from endpoint:", error);
+      return null;
+    }
+  }
 
   public async refreshSummary(id: string) {
     const summary = this._summaries$.getValue().find((s) => s.id === id);
+    if (!summary) {
+      return;
+    }
 
-    await this.generateSummaryFromNotes();
+    const { title, content } = await this.generateSummaryFromNotes(summary);
+
+    this.updateSummary(id, {
+      title,
+      content,
+    });
   }
 
   public get activeSummary$() {

@@ -37,8 +37,6 @@ export const PanelContent: React.FC<{
     summaryService.setActiveSummary(id);
   };
 
-  console.log("activeSummary", activeSummary);
-
   return (
     <>
       <GlobalStyles />
@@ -112,7 +110,7 @@ export const PanelContent: React.FC<{
                   zIndex: 50,
                 }}
               >
-                <ActionsArea />
+                <ActionsArea project={project} />
               </Box>
 
               <Box
