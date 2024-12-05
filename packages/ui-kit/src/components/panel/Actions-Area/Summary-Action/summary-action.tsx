@@ -2,7 +2,9 @@ import { Box, Button, TextField, CircularProgress } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useActionArea } from "../actions-area";
 
-const SummaryAction = () => {
+const SummaryAction: React.FC<{
+  project: any;
+}> = ({ project }) => {
   const { actionType, handleAction } = useActionArea();
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -79,6 +81,15 @@ const SummaryAction = () => {
   };
 
   const onComplete = async () => {
+    const activeSummary = project.summaryService().activeSummary$.getValue();
+    if (!activeSummary) return;
+
+    const summaryService = project.summaryService();
+
+    await summaryService.updateSummary(activeSummary.id, {
+      prompt: value,
+    });
+
     /* const activeSummary = summaryService.activeSummary$.getValue();
 
     if (!activeSummary) {

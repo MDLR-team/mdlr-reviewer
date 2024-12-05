@@ -25,17 +25,22 @@ class SummaryGeneratorService {
   }
 
   public async generate(body: {
+    type: "title" | "content";
     projectId: string;
     userPrompt: string;
-    notes: string;
+    notes?: string;
     [key: string]: any;
   }): Promise<string> {
-    const { projectId, userPrompt, notes, ...additionalConfigs } = body;
+    const { projectId, userPrompt, notes, type, ...additionalConfigs } = body;
 
-    // Generate summary with notes and userPrompt
-    const summary = await this.processWithChatGPT(notes, userPrompt);
+    if (type === "title") {
+      return await this.processTitle(userPrompt);
+    } else if (type === "content") {
+      // Generate summary with notes and userPrompt
+      return await this.processContent(notes!, userPrompt);
+    }
 
-    return summary;
+    throw new Error("Invalid type provided for summary generation.");
   }
 
   // Internal: Initialize Supabase client
@@ -46,14 +51,39 @@ class SummaryGeneratorService {
     }
   }
 
-  private async processWithChatGPT(
-    notes: string,
-    userPrompt: string
-  ): Promise<string> {
+  private async processTitle(userPrompt: string): Promise<string> {
+    const titleSystemMessage = `Generate a concise title for the following content based on the user's prompt: "${userPrompt}". The title should be short, informative, and capture the essence of the content.`;
+
     const messages: any = [
       {
         role: "system",
-        content: "Summarize the following notes for a project.",
+        content: titleSystemMessage,
+      },
+    ];
+
+    const response = await this.openai?.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages,
+    });
+
+    // Handle the response
+    if (!response || !response.choices || response.choices.length === 0) {
+      throw new Error("Failed to generate title from ChatGPT.");
+    }
+
+    return response.choices[0].message?.content || "";
+  }
+
+  private async processContent(
+    notes: string,
+    userPrompt: string
+  ): Promise<string> {
+    const systemMessage = `Summarize the comments based on the user's prompt: "${userPrompt}". Use only the comments provided, keeping the response within 1000 characters, and divide it into paragraphs for clear readability. If mentioning a user, format their name exactly as @First_Last (using an underscore between first and last names. important!). No additional information beyond these comments.`;
+
+    const messages: any = [
+      {
+        role: "system",
+        content: systemMessage,
       },
       {
         role: "user",
