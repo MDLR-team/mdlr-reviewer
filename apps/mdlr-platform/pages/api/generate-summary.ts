@@ -14,14 +14,13 @@ export default async function handler(
     }
 
     const apiKey = process.env.CHATGPT_API_KEY;
-    console.log("aaa", apiKey);
 
     // Initialize the SummaryGenerator service
     const summaryGenerator = new SummaryGenerator({
       supabase: {
         client: supabase,
-        chatGpt: { apiKey },
       },
+      chatGpt: { apiKey },
     });
 
     // Pass the entire body to the generate method

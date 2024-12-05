@@ -152,13 +152,20 @@ class SummaryService {
       });
 
     const summaryContent = summary || "Failed to generate summary.";
-    console.log("Generated summary:", summaryContent);
+    return summaryContent;
   };
 
   public async refreshSummary(id: string) {
     const summary = this._summaries$.getValue().find((s) => s.id === id);
+    if (!summary) {
+      return;
+    }
 
-    await this.generateSummaryFromNotes();
+    const summaryContent = await this.generateSummaryFromNotes();
+
+    this.updateSummary(id, {
+      content: summaryContent,
+    });
   }
 
   public get activeSummary$() {

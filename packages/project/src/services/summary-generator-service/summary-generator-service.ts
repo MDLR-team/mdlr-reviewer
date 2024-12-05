@@ -15,12 +15,10 @@ class SummaryGeneratorService {
     }
   ) {
     const chatGptApiKey = config.chatGpt?.apiKey;
-    console.log("chatGptApiKey", chatGptApiKey);
 
     // Initialize OpenAI API
     this.openai = new OpenAI({
       apiKey: chatGptApiKey,
-      dangerouslyAllowBrowser: true,
     });
 
     this.supabase = this._initializeSupabase(config.supabase);
@@ -33,10 +31,6 @@ class SummaryGeneratorService {
     [key: string]: any;
   }): Promise<string> {
     const { projectId, userPrompt, notes, ...additionalConfigs } = body;
-
-    if (!projectId || !prompt) {
-      throw new Error("Missing required fields: projectId or userPrompt");
-    }
 
     // Generate summary with notes and userPrompt
     const summary = await this.processWithChatGPT(notes, userPrompt);
