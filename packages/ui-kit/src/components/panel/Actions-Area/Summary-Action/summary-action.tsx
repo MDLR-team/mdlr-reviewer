@@ -7,6 +7,8 @@ const SummaryAction: React.FC<{
 }> = ({ project }) => {
   const { actionType, handleAction } = useActionArea();
 
+  const summaryService = project.getSummaryService();
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const [value, setValue] = useState("");
@@ -81,26 +83,14 @@ const SummaryAction: React.FC<{
   };
 
   const onComplete = async () => {
-    const activeSummary = project.summaryService().activeSummary$.getValue();
+    const activeSummary = summaryService.activeSummary;
     if (!activeSummary) return;
 
-    const summaryService = project.summaryService();
-
     await summaryService.updateSummary(activeSummary.id, {
       prompt: value,
     });
 
-    /* const activeSummary = summaryService.activeSummary$.getValue();
-
-    if (!activeSummary) {
-      return;
-    }
-
-    await summaryService.updateSummary(activeSummary.id, {
-      prompt: value,
-    });
-
-    summaryService.generateSummary(); */
+    await summaryService.refreshSummary(activeSummary.id);
   };
 
   /* useEffect(() => {

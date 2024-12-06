@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { ActionType } from "./actions-area.types";
 import Actions from "./Actions/Actions";
 import SummaryAction from "./Summary-Action/summary-action";
@@ -40,6 +46,20 @@ export const useActionArea = () => {
 
 // Update the ActionsArea component to use the provider
 const ActionsArea: React.FC<{ project: any }> = ({ project }) => {
+  const summaryService = project.getSummaryService();
+
+  const [activeSummary, setActiveSummary] = useState<any>(null);
+
+  useEffect(() => {
+    const sub = summaryService.activeSummary$.subscribe((summary: any) => {
+      setActiveSummary(summary);
+    });
+
+    return () => sub.unsubscribe();
+  }, [summaryService]);
+
+  if (!activeSummary) return;
+
   return (
     <ActionAreaProvider>
       <SummaryAction project={project} />
