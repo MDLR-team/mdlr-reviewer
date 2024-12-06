@@ -3,6 +3,7 @@ import { Box, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import Tree from "./blocks/tree/tree";
 import NoteAddIcon from "../../../primitives/icons/note-add-icon";
 import FilterLineIcon from "../../../primitives/icons/filter-line-icon";
+import { usePanel } from "../Panel/hooks/use-panel";
 
 export interface LeftExplorerProps {
   summaries: any[];
@@ -11,6 +12,13 @@ export interface LeftExplorerProps {
 }
 
 export const LeftExplorer: React.FC<LeftExplorerProps> = ({ ...props }) => {
+  const { project } = usePanel();
+  const summaryService = project.getSummaryService();
+
+  const createSummary = () => {
+    summaryService.createSummary("");
+  };
+
   return (
     <Box
       sx={{
@@ -41,7 +49,7 @@ export const LeftExplorer: React.FC<LeftExplorerProps> = ({ ...props }) => {
             width: "100%",
           }}
         >
-          <IconButton onClick={() => true}>
+          <IconButton onClick={createSummary}>
             <NoteAddIcon />
           </IconButton>
 

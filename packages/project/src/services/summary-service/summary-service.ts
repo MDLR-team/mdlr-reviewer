@@ -51,6 +51,17 @@ class SummaryService {
     }
 
     this._summaries$.next(data || []);
+
+    // update active summary
+    const activeSummary = this._activeSummary$.getValue();
+    if (activeSummary) {
+      const updatedSummaries = this._summaries$.getValue();
+      const updActiveSummary = updatedSummaries.find(
+        (summary) => summary.id === activeSummary.id
+      );
+
+      this._activeSummary$.next(updActiveSummary || null);
+    }
   }
 
   /**
@@ -61,10 +72,9 @@ class SummaryService {
 
     const defaultTitle = "Untitled Summary";
     const newSummary: Partial<SummaryEntry> = {
-      projectId,
+      project_id: projectId,
       title: defaultTitle,
       prompt: userPrompt,
-      createdAt: new Date(),
     };
 
     const { data, error } = await this.supabaseClient
@@ -192,6 +202,10 @@ class SummaryService {
 
   public get activeSummary$() {
     return this._activeSummary$.asObservable();
+  }
+
+  public get activeSummary() {
+    return this._activeSummary$.getValue();
   }
 
   public dispose() {
