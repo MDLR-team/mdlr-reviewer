@@ -8,6 +8,7 @@ import React, {
 
 interface PanelContextProps {
   project: any;
+  summaryService: any;
   activeSummary: any;
 }
 
@@ -44,7 +45,7 @@ export const PanelProvider: React.FC<PanelProviderProps> = ({
   }, [project]);
 
   return (
-    <PanelContext.Provider value={{ project, activeSummary }}>
+    <PanelContext.Provider value={{ project, activeSummary, summaryService }}>
       {children}
     </PanelContext.Provider>
   );

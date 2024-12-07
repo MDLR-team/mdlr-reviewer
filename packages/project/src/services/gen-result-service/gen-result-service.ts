@@ -1,6 +1,6 @@
 import { ChatGptConfig } from "../../types/project/project-service.types";
 import OpenAI from "openai";
-import { NoteEntry } from "../note-service/note-service.types";
+import { NoteEntry } from "../../types/note-service/note-service.types";
 
 class GenResultService {
   constructor(chatGptApi?: ChatGptConfig) {}

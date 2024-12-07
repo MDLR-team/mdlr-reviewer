@@ -1,6 +1,4 @@
 import FolderIcon from "../../../primitives/icons/folder-icon";
-import SearchIcon from "../../../primitives/icons/search-icon";
-import SidebarIcon from "../../../primitives/icons/sidebar-icon";
 import { Box, IconButton } from "@mui/material";
 //import { useLeftSidebar } from "../../use-left-sidebar";
 //import { useGlobalStates } from "@/components/services/project-services/global-states-service/global-states-provider";

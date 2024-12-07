@@ -1,6 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import { ProjectService } from "../project-service/project-service";
-import { NoteEntry } from "./note-service.types";
+import { NoteEntry } from "../../types/note-service/note-service.types";
 
 export class NoteService {
   private projectService: ProjectService;
