@@ -71,14 +71,18 @@ class SummaryGeneratorService {
       throw new Error("Failed to generate title from ChatGPT.");
     }
 
-    return response.choices[0].message?.content || "";
+    let title = response.choices[0].message?.content || "";
+    if (title.startsWith('"') && title.endsWith('"')) {
+      title = title.slice(1, -1);
+    }
+    return title;
   }
 
   private async processContent(
     notes: string,
     userPrompt: string
   ): Promise<string> {
-    const systemMessage = `Summarize the comments based on the user's prompt: "${userPrompt}". Use only the comments provided, keeping the response within 1000 characters, and divide it into paragraphs for clear readability. If mentioning a user, format their name exactly as @First_Last (using an underscore between first and last names. important!). No additional information beyond these comments.`;
+    const systemMessage = `Summarize the comments based on the user's prompt: "${userPrompt}". Use only the comments provided, keeping the response within 1000 characters, and divide it into paragraphs for clear readability. If mentioning a user, format their name exactly as @First_Last (using an underscore between first and last names. important!). No additional information beyond these comments. Summary should follow markdown format.`;
 
     const messages: any = [
       {
@@ -92,7 +96,7 @@ class SummaryGeneratorService {
     ];
 
     const response = await this.openai?.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       messages,
     });
 

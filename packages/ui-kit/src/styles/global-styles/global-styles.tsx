@@ -62,8 +62,18 @@ const GlobalStyles: ReturnType<typeof createGlobalStyle> = createGlobalStyle`
       }
 
       p {
-        font-size: 15px;
-        line-height: 1.5;
+        &, & * {
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        & .highlight-name {
+          background-color: var(--mr-gray-1);
+          padding: 2px 4px;
+          border-radius: 2px;
+        }
+        
+        padding-bottom: 20px;
       }
     }
   }

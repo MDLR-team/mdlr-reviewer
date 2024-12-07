@@ -3,6 +3,6 @@ export interface NoteEntry {
   content: string; // The text content of the note
   author_id: string; // (Optional) The user who created the note
   author_username: string; // (Optional) The username of the user who created the note
-  createdAt: Date | string; // Timestamp for when the note was created
-  updatedAt?: Date | string; // (Optional) Timestamp for the last update to the note
+  created_at: Date | string; // Timestamp for when the note was created
+  updated_at?: Date | string; // (Optional) Timestamp for the last update to the note
 }
