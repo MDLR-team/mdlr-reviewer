@@ -147,11 +147,11 @@ const SummaryAction: React.FC<{
       sx={{
         display: "flex",
         flexDirection: "column",
-        boxShadow: "var(--shadow)",
-        border: "1px solid var(--gray-3)",
+        boxShadow: "var(--mr-shadow)",
+        border: "1px solid var(--mr-gray-3)",
         padding: "16px",
         backgroundColor: "#fff",
-        borderRadius: "10px",
+        borderRadius: "var(--mr-border-radius)",
         pointerEvents: "all",
         minWidth: "300px",
       }}

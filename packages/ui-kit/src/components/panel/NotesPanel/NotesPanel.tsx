@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 const NotesContainer = styled(Box)`
   padding: 16px;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 
   background-color: white;
   border: var(--mr-border);
@@ -38,7 +38,7 @@ export const NotesPanel: React.FC<{
   }, [project]);
 
   return (
-    <NotesContainer>
+    <NotesContainer className="mdlr-reviewer-notes">
       <Typography variant="h6">Notes</Typography>
 
       <Box
@@ -63,9 +63,7 @@ export const NotesPanel: React.FC<{
               </NoteContainer>
             ))
           ) : (
-            <Typography variant="body2" color="textSecondary">
-              No notes available
-            </Typography>
+            <p>No notes available</p>
           )}
         </Box>
       </Box>
@@ -75,7 +73,7 @@ export const NotesPanel: React.FC<{
 
 const NoteContainer = styled(Box)`
   padding: 8px;
-  border-radius: 4px;
+  border-radius: var(--mr-border-radius);
   cursor: pointer;
 
   &:hover {
