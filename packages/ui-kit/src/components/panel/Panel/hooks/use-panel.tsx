@@ -1,7 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface PanelContextProps {
   project: any;
+  activeSummary: any;
 }
 
 const PanelContext = createContext<PanelContextProps | undefined>(undefined);
@@ -23,8 +30,21 @@ export const PanelProvider: React.FC<PanelProviderProps> = ({
   project,
   children,
 }) => {
+  const summaryService = project.getSummaryService();
+  const [activeSummary, setActiveSummary] = useState<any>(null);
+
+  useEffect(() => {
+    const b = summaryService.activeSummary$.subscribe((summary: any) =>
+      setActiveSummary(summary)
+    );
+
+    return () => {
+      b.unsubscribe();
+    };
+  }, [project]);
+
   return (
-    <PanelContext.Provider value={{ project }}>
+    <PanelContext.Provider value={{ project, activeSummary }}>
       {children}
     </PanelContext.Provider>
   );

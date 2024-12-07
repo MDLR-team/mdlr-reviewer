@@ -10,6 +10,7 @@ import moment from "moment";
 import Actions from "../Actions-Area/Actions/Actions";
 import ActionsArea from "../Actions-Area/actions-area";
 import { PanelProvider } from "./hooks/use-panel";
+import { RefreshArea } from "../Refresh-Area/Refresh-Area";
 
 export const PanelContent: React.FC<{
   project: any;
@@ -44,6 +45,7 @@ export const PanelContent: React.FC<{
 
       <PanelProvider project={project}>
         <Box
+          className="mdlr-reviewer-panel"
           sx={{
             position: "relative",
             height: "100%",
@@ -51,7 +53,7 @@ export const PanelContent: React.FC<{
             display: "flex",
             flexDirection: "column",
             pointerEvents: "all",
-            padding: "var(--mr-gap-m) 0px var(--mr-gap-m) var(--mr-gap-m)",
+            //padding: "var(--mr-gap-m) 0px var(--mr-gap-m) var(--mr-gap-m)",
             zIndex: 2,
             transition: "all 0.3s",
           }}
@@ -103,7 +105,7 @@ export const PanelContent: React.FC<{
                     top: 0,
                     left: 0,
                     pointerEvents: "none",
-                    padding: "var(--mr-gap-m)",
+                    padding: "var(--mr-gap-l)",
                     display: "flex",
                     alignItems: "flex-end",
                     justifyContent: "center",
@@ -122,45 +124,11 @@ export const PanelContent: React.FC<{
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    backgroundColor: "white",
                   }}
                 >
-                  {" "}
-                  {activeSummary && (
-                    <Box
-                      sx={{
-                        width: "100%",
-                        backgroundColor: "var(--mr-gray-1)",
-                        borderBottom: "1px solid var(--mr-gray-3)",
-                        padding: "6px 16px",
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Box>
-                        {`It was updated ${moment(
-                          activeSummary.updated_at
-                        ).fromNow()}`}
-                      </Box>
-
-                      <Box>
-                        <Button
-                          size="small"
-                          onClick={() =>
-                            project.summaryService.refreshSummary(
-                              activeSummary.id
-                            )
-                          }
-                          sx={{
-                            border: "1px solid var(--mr-gray-3)",
-                          }}
-                        >
-                          Refresh
-                        </Button>
-                      </Box>
-                    </Box>
-                  )}
+                  {/* Actions */}
+                  <RefreshArea />
                   {/* Right Summary */}
                   <RightSummary activeSummary={activeSummary} />
                 </Box>

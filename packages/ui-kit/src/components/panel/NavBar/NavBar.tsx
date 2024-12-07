@@ -35,6 +35,7 @@ const NavBar = () => {
         <IconButton
           sx={{
             transform: "scale(var(--mr-icon-scale))",
+            pointerEvents: "none",
           }}
           //data-active={isExplorerOpen ? "true" : "false"}
           //onClick={handleExplorerToggle}
@@ -42,16 +43,16 @@ const NavBar = () => {
           <FolderIcon />
         </IconButton>
 
-        <IconButton
+        {/* <IconButton
           sx={{
             transform: "scale(var(--mr-icon-scale))",
           }}
         >
           <SearchIcon />
-        </IconButton>
+        </IconButton> */}
       </Box>
 
-      <Box
+      {/* <Box
         sx={{
           minWidth: "50px",
           display: "flex",
@@ -67,7 +68,7 @@ const NavBar = () => {
         >
           <SidebarIcon />
         </IconButton>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

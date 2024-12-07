@@ -49,9 +49,9 @@ const Actions = () => {
       {!showPanel ? (
         <Button
           sx={{
-            boxShadow: "var(--shadow)",
+            boxShadow: "var(--mr-shadow)",
             pointerEvents: "all",
-            border: "1px solid var(--gray-3)",
+            border: "1px solid var(--mr-gray-3)",
             fontWeight: "bold",
             padding: "8px 16px",
             minHeight: "48px",
@@ -70,11 +70,11 @@ const Actions = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            boxShadow: "var(--shadow)",
-            border: "1px solid var(--gray-3)",
+            boxShadow: "var(--mr-shadow)",
+            border: "1px solid var(--mr-gray-3)",
             padding: "16px",
             backgroundColor: "#fff",
-            borderRadius: "10px",
+            borderRadius: "var(--mr-border-radius)",
             pointerEvents: "all",
           }}
         >
@@ -96,7 +96,7 @@ const Actions = () => {
             }}
             onClick={() => handleCommandClick("add-summary")}
           >
-            Add real-time summary
+            Edit prompt
           </Button>
         </Box>
       )}

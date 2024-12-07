@@ -61,6 +61,9 @@ class SummaryService {
       );
 
       this._activeSummary$.next(updActiveSummary || null);
+    } else {
+      const updatedSummaries = this._summaries$.getValue();
+      this._activeSummary$.next(updatedSummaries[0] || null);
     }
   }
 
