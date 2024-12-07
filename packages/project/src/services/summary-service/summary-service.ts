@@ -190,7 +190,12 @@ class SummaryService {
     const prompt = summary.prompt;
 
     const notes = this.projectService.getNotes();
-    const notesContent = notes.map((note) => note.content).join("\n");
+    const notesContent = notes
+      .map(
+        (note) =>
+          `[${note.author_username.replace(/\s+/g, "_")}: ${note.content}`
+      )
+      .join("\n");
 
     const summaryEndpoint =
       this.projectService.getConfig().summaryEndpoint || "";
@@ -209,8 +214,6 @@ class SummaryService {
         userPrompt: prompt,
         notes: notesContent,
       })) || "";
-
-    console.log("title", title);
 
     return {
       title,
@@ -254,6 +257,7 @@ class SummaryService {
     this.updateSummary(id, {
       title,
       content,
+      updated_at: new Date(),
     });
   }
 

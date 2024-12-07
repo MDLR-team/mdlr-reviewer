@@ -6,6 +6,14 @@ import rehypeRaw from "rehype-raw";
 import { usePanel } from "../Panel/hooks/use-panel";
 import NoteAddIcon from "../../../primitives/icons/note-add-icon";
 
+// Function to wrap @name mentions with <span class="highlight-name">
+function preprocessContent(content: any) {
+  const regex = /(@[\w_]+)/g; // Matches @ followed by word characters and underscores
+  if (typeof content !== "string") return content;
+
+  return content.replace(regex, '<span class="highlight-name">$1</span>');
+}
+
 interface RightSummaryProps {
   activeSummary: any | null;
 }
@@ -61,7 +69,7 @@ export const RightSummary: React.FC<RightSummaryProps> = ({
 
         <Box>
           <ReactMarkdown
-            children={activeSummary.content}
+            children={preprocessContent(activeSummary.content)}
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
           />
