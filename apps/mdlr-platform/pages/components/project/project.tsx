@@ -25,22 +25,25 @@ const ProjectTest = () => {
       id: "1",
       content:
         "Discussed project timeline and milestones with the management team. Agreed on the initial deadlines and deliverables.",
-      author: "John Doe",
-      createdAt: "2023-10-01",
+      author_id: "1",
+      author_username: "John Doe",
+      created_at: "2023-10-01",
     },
     {
       id: "2",
       content:
         "Team meeting to brainstorm innovative solutions for the project. Focused on leveraging new technologies in the AEC sector.",
-      author: "Jane Smith",
-      createdAt: "2023-10-02",
+      author_id: "2",
+      author_username: "Jane Smith",
+      created_at: "2023-10-02",
     },
     {
       id: "3",
       content:
         "Budget review session with the finance department. Identified potential cost-saving measures and reallocated resources.",
-      author: "Alice Johnson",
-      createdAt: "2023-10-03",
+      author_id: "3",
+      author_username: "Alice Johnson",
+      created_at: "2023-10-03",
     },
   ];
 

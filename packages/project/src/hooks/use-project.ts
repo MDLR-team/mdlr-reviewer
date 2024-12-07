@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ProjectService } from "../services/project-service/project-service";
-import { NoteEntry } from "../services/note-service/note-service.types";
+import { NoteEntry } from "../types/note-service/note-service.types";
 import { SummaryEntry } from "../services/summary-service/summary-service.types";
 
 export function useProject(projectService: ProjectService) {

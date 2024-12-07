@@ -7,3 +7,11 @@ export interface SummaryEntry {
   created_at: Date; // Timestamp for when the summary was created
   updated_at?: Date; // (Optional) Timestamp for the last update to the summary
 }
+
+export type SortMode =
+  | "name-asc"
+  | "name-desc"
+  | "date-created-asc"
+  | "date-created-desc"
+  | "date-refreshed-asc"
+  | "date-refreshed-desc";

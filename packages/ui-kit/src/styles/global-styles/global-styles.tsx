@@ -17,6 +17,18 @@ const GlobalStyles: ReturnType<typeof createGlobalStyle> = createGlobalStyle`
     --mr-gap-l: 24px;
     --mr-shadow: 0px 12px 33px 0px rgba(0, 0, 0, .06), 0px 3.618px 9.949px 0px rgba(0, 0, 0, .04);
 
+    --mr-font-size-s: 12px;
+
+    & .mdlr-reviewer-menu {
+      & .MuiPaper-root.MuiMenu-paper {
+        min-width: max-content !important;
+
+        &, & * {
+          font-size: var(--mr-font-size-s);
+        }
+      }
+    }
+
     & .mdlr-reviewer-notes, & .mdlr-reviewer-panel {
       ::-webkit-scrollbar {
         width: 3px; /* width of the entire scrollbar */
@@ -38,7 +50,7 @@ const GlobalStyles: ReturnType<typeof createGlobalStyle> = createGlobalStyle`
 
     & .mdlr-reviewer-panel {
       &, & * {
-        font-size: 12px;
+        font-size: var(--mr-font-size-s);
       }
         
       & .MuiButton-root {

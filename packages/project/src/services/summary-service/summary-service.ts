@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { NoteService } from "../note-service/note-service";
 import { ProjectService } from "../project-service/project-service";
-import { SummaryEntry } from "./summary-service.types";
+import { SortMode, SummaryEntry } from "./summary-service.types";
 import GenResultService from "../gen-result-service/gen-result-service";
 
 class SummaryService {
@@ -16,6 +16,8 @@ class SummaryService {
 
   private supabaseClient: any;
   private noteService: NoteService;
+
+  private _sortMode$ = new BehaviorSubject<SortMode>("date-created-desc");
 
   constructor(projectService: ProjectService) {
     this.genResultService = new GenResultService();
@@ -38,12 +40,47 @@ class SummaryService {
    */
   public async fetchSummaries() {
     const projectId = this.projectService.id;
+    const currentSortMode = this._sortMode$.getValue();
+
+    // Determine sorting column and direction based on sort mode
+    let orderColumn: string;
+    let ascending: boolean;
+
+    switch (currentSortMode) {
+      case "name-asc":
+        orderColumn = "title";
+        ascending = true;
+        break;
+      case "name-desc":
+        orderColumn = "title";
+        ascending = false;
+        break;
+      case "date-created-asc":
+        orderColumn = "created_at";
+        ascending = true;
+        break;
+      case "date-created-desc":
+        orderColumn = "created_at";
+        ascending = false;
+        break;
+      case "date-refreshed-asc":
+        orderColumn = "updated_at";
+        ascending = true;
+        break;
+      case "date-refreshed-desc":
+        orderColumn = "updated_at";
+        ascending = false;
+        break;
+      default:
+        orderColumn = "created_at";
+        ascending = false;
+    }
 
     const { data, error } = await this.supabaseClient
       .from("summaries") // Adjust table name if needed
       .select("*")
       .eq("project_id", projectId)
-      .order("created_at", { ascending: true });
+      .order(orderColumn, { ascending });
 
     if (error) {
       console.error("Error fetching summaries:", error);
@@ -86,6 +123,23 @@ class SummaryService {
 
     if (error) {
       console.error("Error creating summary:", error);
+      return;
+    }
+
+    await this.fetchSummaries();
+  }
+
+  /**
+   * Delete a summary.
+   */
+  public async deleteSummary(summaryId: string) {
+    const { data, error } = await this.supabaseClient
+      .from("summaries")
+      .delete()
+      .eq("id", summaryId);
+
+    if (error) {
+      console.error("Error deleting summary:", error);
       return;
     }
 
@@ -203,12 +257,22 @@ class SummaryService {
     });
   }
 
+  public async sortSummaries(mode: SortMode) {
+    this._sortMode$.next(mode);
+
+    this.fetchSummaries();
+  }
+
   public get activeSummary$() {
     return this._activeSummary$.asObservable();
   }
 
   public get activeSummary() {
     return this._activeSummary$.getValue();
+  }
+
+  public get sortMode$() {
+    return this._sortMode$.asObservable();
   }
 
   public dispose() {

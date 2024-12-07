@@ -7,7 +7,7 @@ import {
   SupabaseConfig,
 } from "../../types/project/project-service.types";
 import DBService from "../db-service/db-service";
-import { NoteEntry } from "../note-service/note-service.types";
+import { NoteEntry } from "../../types/note-service/note-service.types";
 
 export class ProjectService implements IProjectService {
   id: string;

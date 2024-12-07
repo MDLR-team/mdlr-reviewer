@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Box, Typography } from "@mui/material";
+import NoteMessage from "./Note-Message/Note-Message";
 
 const NotesContainer = styled(Box)`
   padding: 16px;
@@ -57,11 +58,7 @@ export const NotesPanel: React.FC<{
           }}
         >
           {notes.length > 0 ? (
-            notes.map((note) => (
-              <NoteContainer key={note.id} mb={2}>
-                {note.content}
-              </NoteContainer>
-            ))
+            notes.map((note) => <NoteMessage key={note.id} note={note} />)
           ) : (
             <p>No notes available</p>
           )}
@@ -70,18 +67,3 @@ export const NotesPanel: React.FC<{
     </NotesContainer>
   );
 };
-
-const NoteContainer = styled(Box)`
-  padding: 8px;
-  border-radius: var(--mr-border-radius);
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f1f0ee;
-  }
-
-  &,
-  & * {
-    font-size: 12px;
-  }
-`;
