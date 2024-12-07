@@ -1,10 +1,12 @@
 import { Box, Button, TextField, CircularProgress } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useActionArea } from "../actions-area";
+import { usePanel } from "../../Panel/hooks/use-panel";
 
 const SummaryAction: React.FC<{
   project: any;
 }> = ({ project }) => {
+  const { activeSummary } = usePanel();
   const { actionType, handleAction } = useActionArea();
 
   const summaryService = project.getSummaryService();
@@ -86,11 +88,17 @@ const SummaryAction: React.FC<{
     const activeSummary = summaryService.activeSummary;
     if (!activeSummary) return;
 
+    setLoading(true);
+
     await summaryService.updateSummary(activeSummary.id, {
       prompt: value,
     });
 
     await summaryService.refreshSummary(activeSummary.id);
+
+    setLoading(false);
+
+    handleAction(null);
   };
 
   /* useEffect(() => {
@@ -137,8 +145,11 @@ const SummaryAction: React.FC<{
   };
 
   useEffect(() => {
-    setValue("");
-  }, [actionType]);
+    if (!activeSummary) setValue("");
+
+    const prompt = activeSummary?.prompt;
+    setValue(prompt || "");
+  }, [actionType, activeSummary]);
 
   if (actionType !== "add-summary") return null;
 

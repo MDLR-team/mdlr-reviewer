@@ -90,7 +90,7 @@ const Wrapper = styled.div`
   background-color: #f1f0ee;
 
   & .gutter.gutter-horizontal {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: col-resize;
 
     &:hover {

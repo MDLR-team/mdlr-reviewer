@@ -53,7 +53,7 @@ export const PanelContent: React.FC<{
             display: "flex",
             flexDirection: "column",
             pointerEvents: "all",
-            padding: "var(--mr-gap-m) 0px var(--mr-gap-m) var(--mr-gap-m)",
+            //padding: "var(--mr-gap-m) 0px var(--mr-gap-m) var(--mr-gap-m)",
             zIndex: 2,
             transition: "all 0.3s",
           }}
@@ -105,7 +105,7 @@ export const PanelContent: React.FC<{
                     top: 0,
                     left: 0,
                     pointerEvents: "none",
-                    padding: "var(--mr-gap-m)",
+                    padding: "var(--mr-gap-l)",
                     display: "flex",
                     alignItems: "flex-end",
                     justifyContent: "center",

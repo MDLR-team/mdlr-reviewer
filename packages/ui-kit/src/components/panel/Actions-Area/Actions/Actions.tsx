@@ -96,7 +96,7 @@ const Actions = () => {
             }}
             onClick={() => handleCommandClick("add-summary")}
           >
-            Add real-time summary
+            Edit prompt
           </Button>
         </Box>
       )}
