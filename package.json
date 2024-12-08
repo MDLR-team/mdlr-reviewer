@@ -1,6 +1,6 @@
 {
   "name": "mdlr-reviewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "workspaces": [
     "apps/*",
