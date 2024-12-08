@@ -167,8 +167,6 @@ const ProjectTest = () => {
 
   const { notes, summaries } = useProject(project);
 
-  console.log("project", project);
-
   return (
     <SplitPane fullscreen>
       <Panel project={project} />
