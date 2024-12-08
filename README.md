@@ -1,6 +1,8 @@
-# **MDLR Framework**
+# **MDLR Reviewer Framework**
 
-**MDLR** is an open-source framework designed to transform unstructured feedback—notes, comments, and ideas—into **real-time, actionable insights**. Whether you're organizing **personal notes** or managing feedback for **collaborative projects**, MDLR adapts to your workflows, making sense of the chaos.
+![MDLR Reviewer](/apps/mdlr-platform/public/cover.png)
+
+**MDLR Reviewer** is an open-source framework designed to transform unstructured feedback—notes, comments, and ideas—into **real-time, actionable insights**. Whether you're organizing **personal notes** or managing feedback for **collaborative projects**, MDLR adapts to your workflows, making sense of the chaos.
 
 ---
 
@@ -88,11 +90,8 @@ const App = () => (
 export default App;
 ```
 
----
-
-## API Setup for Summaries
-
-To enable the **summary generation** feature, create an API endpoint in your Next.js app:
+### c. Backend API for Summaries
+In `/pages/api/generate-summary.ts`, create a backend endpoint:
 
 ```typescript
 // pages/api/generate-summary.ts
