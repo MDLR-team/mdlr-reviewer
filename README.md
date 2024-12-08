@@ -35,10 +35,24 @@ npm install @mdlr/project @mdlr/ui-kit
 
 ---
 
-## Basic Example: Setting Up MDLR in Your App
+## Setup Example
 
-Here’s a minimal **Next.js/React** integration to get started:
+Below is an example of setting up **MDLR** in a **Next.js/React** app.
 
+### a. Supabase Initialization
+Ensure you create a **Supabase** table for summaries named `summaries` with the following schema:
+
+| **Column**    | **Type**     | **Notes**                  |
+|---------------|--------------|----------------------------|
+| `id`         | `int8`     | Primary Key                |
+| `project_id` | `uuid`       | References Project ID      |
+| `prompt`| `text`       | User-provided prompt       |
+| `title`    | `text`       | AI-generated title       |
+| `content`    | `text`       | AI-generated summary       |
+| `created_at` | `timestamp`  | Default: `now()`           |
+| `updated_at` | `timestamp`  | Optional, for updates      |
+
+### b. Integrate MDLR with Supabase and the Summary API
 ```typescript
 import React from "react";
 import { Project } from "@mdlr/project";
