@@ -26,7 +26,6 @@ const SummaryAction: React.FC<{
       if (mentionPattern.test(segment)) {
         const mentionMatch = mentionPattern.exec(segment);
 
-        console.log("mentionMatch", mentionMatch);
         /* if (mentionMatch) {
           editor
             .chain()
@@ -42,7 +41,6 @@ const SummaryAction: React.FC<{
         } */
       } else if (headingPattern.test(segment)) {
         /* const headingMatch = headingPattern.exec(segment);
-        console.log("headingMatch", headingMatch);
 
         if (headingMatch) {
           editor

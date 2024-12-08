@@ -29,9 +29,6 @@ importers:
       '@mdlr-reviewer/project':
         specifier: workspace:*
         version: link:../../packages/project
-      '@mdlr-reviewer/summary':
-        specifier: workspace:*
-        version: link:../../packages/summary
       '@mdlr-reviewer/ui-kit':
         specifier: workspace:*
         version: link:../../packages/ui-kit
@@ -122,6 +119,9 @@ importers:
       react-markdown:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.3.12)(react@19.0.0-rc-66855b96-20241106)
+      react-split:
+        specifier: ^2.0.14
+        version: 2.0.14(react@19.0.0-rc-66855b96-20241106)
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
