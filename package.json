@@ -20,6 +20,6 @@
     "dev": "pnpm -r --workspace-concurrency=1 run dev",
     "dev:platform": "pnpm -r --filter mdlr-platform run dev",
     "lint": "pnpm -r --workspace-concurrency=1 run lint",
-    "publish": "pnpm -r --filter @mdlr-reviewer/project --filter @mdlr-reviewer/ui-kit publish --access public"
+    "publish:p": "pnpm -r --filter @mdlr-reviewer/project --filter @mdlr-reviewer/ui-kit publish --access public"
   }
 }
