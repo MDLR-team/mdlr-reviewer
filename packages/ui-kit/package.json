@@ -1,10 +1,25 @@
 {
   "name": "@mdlr-reviewer/ui-kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "typescript",
+    "react",
+    "mui",
+    "emotion",
+    "styled-components",
+    "markdown",
+    "split",
+    "react-split",
+    "ai",
+    "nextjs",
+    "openai",
+    "insights",
+    "supabase"
   ],
   "scripts": {
     "build": "tsc",
