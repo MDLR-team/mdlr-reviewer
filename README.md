@@ -39,7 +39,7 @@ npm install @mdlr/project @mdlr/ui-kit
 
 Here’s a minimal **Next.js/React** integration to get started:
 
-```bash
+```typescript
 import React from "react";
 import { Project } from "@mdlr/project";
 import { Panel, NotesPanel, Layout } from "@mdlr/ui-kit";
@@ -80,7 +80,7 @@ export default App;
 
 To enable the **summary generation** feature, create an API endpoint in your Next.js app:
 
-```bash
+```typescript
 // pages/api/generate-summary.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import { GenResultService } from "@mdlr/project";
