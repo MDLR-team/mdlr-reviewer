@@ -1,10 +1,7 @@
 import { Project, useProject } from "@mdlr-reviewer/project";
 import { useEffect, useState } from "react";
-import { NotesPanel, Panel } from "@mdlr-reviewer/ui-kit";
+import { NotesPanel, Panel, SplitPane } from "@mdlr-reviewer/ui-kit";
 import { supabase } from "../supabase/supabase-client";
-import { Box } from "@mui/material";
-import styled from "styled-components";
-import Split from "react-split";
 
 const ProjectTest = () => {
   const newProject = "dbee9e2b-67ad-4baa-aa9d-6a4da7b6de2b";
@@ -173,50 +170,11 @@ const ProjectTest = () => {
   console.log("project", project);
 
   return (
-    <Wrapper>
-      <Split
-        sizes={[40, 60]}
-        minSize={400}
-        gutterSize={3}
-        gutterAlign="center"
-        direction="horizontal"
-        style={{ display: "flex", width: "100%", height: "100%" }}
-      >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Panel project={project} />
-        </Box>
-
-        <Box
-          sx={{
-            width: "100%",
-            padding: "20px",
-          }}
-        >
-          <NotesPanel project={project} />
-        </Box>
-      </Split>
-    </Wrapper>
+    <SplitPane fullscreen>
+      <Panel project={project} />
+      <NotesPanel project={project} />
+    </SplitPane>
   );
 };
-
-const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #f1f0ee;
-
-  & .gutter.gutter-horizontal {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: col-resize;
-
-    &:hover {
-      background-color: #ff4e00;
-    }
-  }
-`;
 
 export default ProjectTest;
