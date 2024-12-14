@@ -60,7 +60,7 @@ Ensure you create a **Supabase** table for summaries named `summaries` with the 
 ```typescript
 import React from "react";
 import { Project } from "@mdlr-reviewer/project";
-import { Panel, NotesPanel, Layout } from "@mdlr-reviewer/ui-kit";
+import { Panel, NotesPanel, SplitPane } from "@mdlr-reviewer/ui-kit";
 import { createClient } from "@supabase/supabase-js";
 
 // Initialize Supabase
@@ -83,10 +83,10 @@ project.addNotes([
 
 // App Component
 const App = () => (
-  <Layout>
+  <SplitPane>
     <Panel project={project} />
     <NotesPanel project={project} />
-  </Layout>
+  </SplitPane>
 );
 
 export default App;
