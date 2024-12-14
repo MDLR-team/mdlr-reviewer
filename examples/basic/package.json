@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mdlr-reviewer/project": "^1.0.5",
-    "@mdlr-reviewer/ui-kit": "^1.0.5",
+    "@mdlr-reviewer/project": "^1.0.6",
+    "@mdlr-reviewer/ui-kit": "^1.0.6",
     "@supabase/supabase-js": "^2.47.7",
     "next": "15.0.4",
     "react": "^19.0.0",
