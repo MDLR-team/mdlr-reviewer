@@ -1,6 +1,6 @@
 {
   "name": "@mdlr-reviewer/project",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -30,11 +30,12 @@
     "rxjs": "^7.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "*",
+    "react-dom": "*"
   },
   "devDependencies": {
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "*",
+    "@types/react-dom": "*",
     "typescript": "^5.0.0"
   }
 }
