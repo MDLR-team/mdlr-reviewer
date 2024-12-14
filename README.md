@@ -77,8 +77,8 @@ const project = new Project("project-123", {
 
 // Add initial notes
 project.addNotes([
-  { id: "1", content: "Review management tasks", author_id: 1, author_username: "John Doe", created_at: "2023-10-01" },
-  { id: "2", content: "Update timelines for Site A", author_id: 2, author_username: "Jane Smith", created_at: "2023-10-01" },
+  { id: "1", content: "Review management tasks", author_id: "1", author_username: "John Doe", created_at: "2023-10-01" },
+  { id: "2", content: "Update timelines for Site A", author_id: "2", author_username: "Jane Smith", created_at: "2023-10-01" },
 ]);
 
 // App Component

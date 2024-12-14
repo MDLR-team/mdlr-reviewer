@@ -190,7 +190,7 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@mdlr-reviewer/project@^1.0.5":
+"@mdlr-reviewer/project@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@mdlr-reviewer/project/-/project-1.0.6.tgz#e9db937eb5447076347a54bf1a4cdacca7ee3257"
   integrity sha512-1tfy09TWheYHZt5e1A8jbpTGADn3USYP//fRHiTI72J3WBexd3K3jaGPpDQovyRbqdKEUap1RNIThY0/pPBYPw==
@@ -198,7 +198,7 @@
     openai "^4.73.0"
     rxjs "^7.0.0"
 
-"@mdlr-reviewer/ui-kit@^1.0.5":
+"@mdlr-reviewer/ui-kit@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@mdlr-reviewer/ui-kit/-/ui-kit-1.0.6.tgz#2a2d51f57eb7bdbd4dd81c0cb2028cfa43264476"
   integrity sha512-LTmxJtfq7YzuehKYqJJwSyW0zh4LD8bqNOb/AnX2pJruLR5gn5GX5GnuZv/34H5fOQlW09dKCKlwBRktHMmYmw==
