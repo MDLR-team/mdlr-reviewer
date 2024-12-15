@@ -411,18 +411,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mdlr-reviewer/project@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@mdlr-reviewer/project/-/project-1.0.8.tgz#7041b51abee78cba3aaba6946a714387414983eb"
-  integrity sha512-OpISo8EGkszviwsO+6IXVpwAy+62Bvc+iybwspQlng8KpxzctnceABbovUv78mkrdgcxwNO8DIpbsPbVMEY9Bw==
+"@mdlr-reviewer/project@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@mdlr-reviewer/project/-/project-1.0.9.tgz#f72914852e6106674d11afb79e787426d47c4740"
+  integrity sha512-dunln9h7Ci3qcFWOZbyOOSrf0lPzwuOk8U+kgNC092lpU0kHxHzdhh/X/zrqyIOPSP0ZJOmkfvwFotjLKwt1Yw==
   dependencies:
     openai "^4.73.0"
     rxjs "^7.0.0"
 
-"@mdlr-reviewer/ui-kit@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@mdlr-reviewer/ui-kit/-/ui-kit-1.0.8.tgz#224407f2392a99e4233873f99a9b83e7e0c358e4"
-  integrity sha512-2Mn29A+KJiWDgnwA0FUYNqgRP6xyN63uT9b5wY9xZc7RdqVJVEu5bS4DRnol7EG7gBEMRe+q2NjxOQpxDhd0mg==
+"@mdlr-reviewer/ui-kit@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@mdlr-reviewer/ui-kit/-/ui-kit-1.0.9.tgz#3734155570c5883ae19085f987aabcbbb9507c76"
+  integrity sha512-R23NdKWDWOuwQVwLGE2DyY9uQ1ZSD+uGw01QHe/Jb12lbZgFq9/ZF0k53ujK+6rXluxJtn4Ul9MLseSWIfRkCQ==
   dependencies:
     moment "^2.30.1"
     react-markdown "^9.0.1"
