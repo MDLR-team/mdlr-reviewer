@@ -1,6 +1,6 @@
 {
   "name": "@mdlr-reviewer/ui-kit",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -31,6 +31,11 @@
     "@mui/material": "^5.14.0",
     "react": "*",
     "react-dom": "*"
+  },
+  "optionalDependencies": {
+    "@mui/material": "^5.14.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0"
   },
   "devDependencies": {
     "@emotion/react": "^11.11.0",

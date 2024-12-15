@@ -22,11 +22,11 @@ project.addNotes([
 ]);
 
 // App Component
-const App = () => (
+const Reviewer = () => (
   <SplitPane>
     <Panel project={project} />
     <NotesPanel project={project} />
   </SplitPane>
 );
 
-export default App;
+export default Reviewer;
