@@ -1,8 +1,6 @@
-import { BehaviorSubject } from "rxjs";
 import { NoteService } from "../note-service/note-service";
 import { SummaryService } from "../summary-service/summary-service";
 import {
-  ChatGptConfig,
   IProjectService,
   SupabaseConfig,
 } from "../../types/project/project-service.types";
