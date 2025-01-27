@@ -2,6 +2,7 @@ import { Project, useProject } from "@mdlr-reviewer/project";
 import { useEffect, useState } from "react";
 import { NotesPanel, Panel, SplitPane } from "@mdlr-reviewer/ui-kit";
 import { supabase } from "../supabase/supabase-client";
+import styled from "styled-components";
 
 const ProjectTest = () => {
   const newProject = "dbee9e2b-67ad-4baa-aa9d-6a4da7b6de2b";

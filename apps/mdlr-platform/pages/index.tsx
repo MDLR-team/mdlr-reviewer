@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ProjectTest from "./components/project/project";
+import { createGlobalStyle } from "styled-components";
 
 export default function Home() {
   return (
@@ -11,6 +12,38 @@ export default function Home() {
       </Head>
 
       <ProjectTest />
+
+      <GlobalStyles />
     </>
   );
 }
+
+const GlobalStyles = createGlobalStyle`
+  // custom styles for the react-markdown
+  & h3 {
+    &,
+    & * {
+      font-size: 18px !important;
+    }
+
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  & .highlight-name {
+    color: rgb(221, 74, 104);
+    font-size: 14px !important;
+  }
+
+  & .MuiButtonBase-root.MuiButton-root {
+    //box-shadow: none;
+  }
+
+  & .MuiButton-root:not(.MuiButton-contained) {
+    color: black;
+  }
+
+  & .MuiButton-root.MuiButton-contained {
+    background-color: #221fff;
+  }
+`;
